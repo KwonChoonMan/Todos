@@ -31,10 +31,11 @@
             </thead>
             <tbody>
             {% for gb in list %}
-            <tr>
+            <tr> 
                 <td>{{gb.gno}}</td>
                 <td>{{gb.writer}}</td>
-                <td>{{gb.content}}</td>
+                <td><input type= "text" name= "content" value="{{gb.content}}"></input>
+                </td>
                 <td>{{gb.writeday}}</td>
                 <td>
                   <form action="/delete" method="post">
