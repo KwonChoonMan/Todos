@@ -1,32 +1,30 @@
 import flask as f
-import model as m 
+import dao
 app = f.Flask(__name__)
-# 목록
+# 방명록 출력
 @app.route("/")
 def list():
-    result = m.list()
-    return f.render_template("/list.html",list=result)
+   result = dao.findall()
+   return f.render_template("list.html", list=result)
 
-# 추가
+
+ # 방명록추가
+# post는 작업을 처리 - > 처리가 끝났으면 다른 작업처리 이동한다
+
 @app.route("/write", methods=['post'])
 def write():
-    writer = f.request.form.get('writer',type=str)
-    content = f.request.form.get('content',type=str)
-    m.save(writer=writer, content=content)
-    return f.redirect("/")
-#삭제
-@app.route("/delete", methods=['post'])
-def delete():
-    gno = f.request.form.get('gno',type=int)
-    m.delete(gno=gno)
-    return f.redirect("/")
+  nickname = f.request.form.get('nickname', type=str)
+  content = f.request.form.get('content', type=str)
+  dao.save(nickname=nickname,content=content)
+  return f.redirect("/")
 
-#변경
-@app.route("/update", methods=['post'])
-def update():
-    gno = f.request.form.get('gno',type=int)
-    content = f.request.form.get('content',type=str)
-    m.update(gno=gno, content=content)
+
+
+# 방명록 삭제
+@app.route("/delete",methods=['post'])
+def delete():
+    gno = f.request.form.get('gno', type=int)
+    dao.delete(gno)
     return f.redirect("/")
 
 app.run(debug=True)

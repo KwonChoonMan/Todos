@@ -19,33 +19,28 @@
         </div>
         <button type="submit" class="btn btn-primary">작성</button>
       </form>
-       <table class="table table-hover">
+    <table class="table table-hover">
         <thead>
-            <tr>
-                <th>번호</th>
-                <th>글쓴이</th>
-                <th>내용</th>
-                <th>날짜</th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for gb in list %}
-            <tr> 
-                <td>{{gb.gno}}</td>
-                <td>{{gb.nickname}}</td>
-                <td>{{gb.content}}</td>
-                <td>{{gb.writeday}}</td>
-                <td>
-                  <form action="/delete" method="post">
-                    <input type="hidden" name="gno" value="{{gb.gno}}">
-                    <button class="btn btn-danger">삭제</button>
-                  </form>
-                </td>
-            </tr>
-            {% endfor %}
-            </tbody>
-        
-       </table>
+          <tr>
+            <th>번호</th><th>제목</th><th>글쓴이</th><th>조회</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for b in list %}  
+        <tr>
+          <td>{{b.bno}}</td>
+          <td>
+            <a href="/read/bno={{b.bno}}">{{b.title}}</a>
+          </td>
+          <td>{{b.nickname}}</td>
+          <td>{{b.readcnt}}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+      <a href="/write">글쓰기로</a>
 </body>
 </html>
+
+    
+    
