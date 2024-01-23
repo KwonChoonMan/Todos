@@ -11,7 +11,7 @@ def write(title:str, content:str,nickname:str):
 
 # 작업을 2개 -조회수 증가
 def findone(bno:int):
-    for board in board_list:
+    for board in borad_list:
         if board['bno']==bno:
             board['readcnt']=board['readcnt']+1
             return None

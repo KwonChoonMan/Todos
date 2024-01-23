@@ -7,6 +7,7 @@ def 목록():
   result = dao.findall()
   return f.render_template("list.html", list=result)
 
+# /reda? bno=1 또는 /read?bno=2
 @app.route("/read")
 def 읽기():
   bno = f.request.args.get('bno', type=int)
