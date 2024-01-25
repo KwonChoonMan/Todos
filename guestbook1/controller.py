@@ -6,25 +6,25 @@ import model as m
 app = f.Flask(__name__)
 
 # 방명록을 출력 : 127.0.0.1:5000
-@app.route("/name")
+@app.route("/")
 def list():
      guestbook = m.findall()
      # list.html에  list라 이름으로  guestbook을 넘겨준다 
      return f.render_template("list.html",list=guestbook)
     
 
-@app.route("/write", method=['post'])
+@app.route("/write", methods=['post'])
 def write():
     content = f.request.form.get("content",type=str)
     m.save(content=content)
-    return f.redirect("/name")
+    return f.redirect("/")
 
 
-@app.route("/delete" , method=['post'])
+@app.route("/delete" , methods=['post'])
 def delete():
      gno =f.request.args.get("gno", type=int)
      m.delete(gno)
-     return f.redirect("/name")
+     return f.redirect("/")
 
 
 
